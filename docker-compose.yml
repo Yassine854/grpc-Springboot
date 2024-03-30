@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:14.5
+    container_name: postgresql
+    volumes:
+      - dbvol:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: userdb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: postgres123
+
+volumes:
+  dbvol:

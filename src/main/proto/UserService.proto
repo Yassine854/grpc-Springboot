@@ -1,0 +1,35 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.learning.grpc;
+
+message UserRequest {
+  int32 id = 1;
+}
+
+message UserObj {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+}
+
+message UsersResponse {
+  repeated UserObj users = 1;
+}
+
+message GeneralResponse {
+  string response = 1;
+}
+
+import "google/protobuf/empty.proto";
+
+service UserService {
+  rpc getAllUsers(google.protobuf.Empty) returns (UsersResponse);
+
+  rpc getUser(UserRequest) returns (UserObj);
+
+  rpc create(UserObj) returns (GeneralResponse);
+
+  rpc update(UserObj) returns (GeneralResponse);
+
+  rpc delete(UserRequest) returns (GeneralResponse);
+}
